@@ -7,8 +7,13 @@ module.exports={
     async createUser(request,response){
         const { name, email, data, whatsapp } = request.body
         let e_mail = await conexao('usuarios').where('email', email).first()
+        let whats = await conexao('usuarios').where('whatsapp', whatsapp).first()
         if (e_mail) {
-            return response.status(302).json({ error: "usuario ja existe" })
+            
+            if(whats){
+                return response.status(302).json({ error: "whats ja cadastrado" })
+            }
+            return response.status(302).json({ error: " email ja cadastro" })
         }
         await conexao('usuarios').insert({
             name,

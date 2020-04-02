@@ -11,7 +11,7 @@ routes.post('/usuario',celebrate({
     [Segments.BODY]:Joi.object().keys({
         name:Joi.string().required(),
         email:Joi.string().required().email(),
-        data:Joi.date().required(),
+        data:Joi.string().min(10).max(12),
         whatsapp:Joi.string().required().min(10).max(11)
     })
 }), ControllerUser.createUser)
@@ -30,7 +30,7 @@ routes.post('/tatuador',celebrate({
     [Segments.BODY]:Joi.object().keys({
         name:Joi.string().required(),
         email:Joi.string().required().email(),
-        data:Joi.date().required(),
+        data:Joi.string().min(10).max(12),
         whatsapp:Joi.string().required().min(10).max(11),
         endereco:Joi.string().required(),
     })
